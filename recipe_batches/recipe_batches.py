@@ -3,7 +3,17 @@
 import math
 
 def recipe_batches(recipe, ingredients):
-  pass 
+    batches = []
+    # find keys
+    if recipe.keys() == ingredients.keys():
+        for key in recipe:
+          #divide each key value bye the corresponding value
+            batches.append(ingredients[key] // recipe[key])
+            #round down to whole number
+            return min(batches)
+
+    else:
+        return 0
 
 
 if __name__ == '__main__':
