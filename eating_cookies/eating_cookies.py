@@ -8,12 +8,15 @@ import sys
 
 
 def eating_cookies(n, cache={}):
+    #base case looking for less than zero or less equal or less than 2
     if n <= 0:
         n = 0
         return n + 1
     if n <= 2:
         return n
+        # if the key of n is not in the dictionary 
     if n not in cache:
+        # then n as a key of cache will be equal to the recursive calls adding each recursive iteration onto itself
         cache[n] = eating_cookies(n-1) + eating_cookies(n-2) + eating_cookies(n-3)
     return cache[n]
 
