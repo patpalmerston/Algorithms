@@ -3,7 +3,18 @@
 import math
 
 def recipe_batches(recipe, ingredients):
-  pass 
+    batches = []
+    # find keys and make sure that recipe and ingredients have matching values
+    if recipe.keys() == ingredients.keys():
+        for key in recipe:
+          #divide each key value bye the corresponding value... ingredient amount needs to be more than what recipe needs
+            batches.append(ingredients[key] // recipe[key])
+            #round down to whole number
+            return min(batches)
+
+    else:
+      #if there the recipe and ingredient key values dont match then no recipe
+        return 0
 
 
 if __name__ == '__main__':

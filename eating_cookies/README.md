@@ -27,3 +27,40 @@ You can also test your implementation manually by executing `python eating_cooki
  * Think about base cases that we would want our recursive function to stop recursing on. How many ways are there to eat 0 cookies? What about a negative number of cookies? 
  * Once we've established some base cases, how can we recursively call our function such that we move towards one or more of these base cases?
  * As far as performance optimizations go, caching/memoization might be one avenue we could go down? How should we make a cache available to our recursive function through multiple recursive calls?
+
+# example of a fibcache
+fibcache = {}
+def  sum_fibonacci(n):
+    """Compute the nth Fibonacci number.
+
+    >>> sum_fibonacci(35)
+    9227465
+    >>> sum_fibonacci(10)
+    55
+    >>> sum_fibonacci(0)
+    0
+    >>> sum_fibonacci(1)
+    1
+    >>> sum_fibonacci(5)
+    5
+    """
+    if n == 0:
+        fibcache[n] = 0
+        return fibcache[n]
+    elif n == 1:
+        fibcache[n] = 1
+        return fibcache[n]
+    else:
+        sum_left = 0
+        sum_right = 0
+        if n-2 in fibcache.keys():
+            sum_left += fibcache[n-2]
+        else:
+            sum_left += sum_fibonacci(n-2)
+            fibcache[n-2] = sum_left
+        if n-1 in fibcache.keys():
+            sum_right += fibcache[n-1]
+        else:
+            sum_right += sum_fibonacci(n-1)
+            fibcache[n-1] = sum_right
+        return sum_left + sum_right
